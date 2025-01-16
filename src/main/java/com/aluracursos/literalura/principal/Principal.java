@@ -57,6 +57,9 @@ public class Principal {
                 case 4:
                     autoresVivosPeriodo();
                     break;
+                case 5:
+                    listarPorIdioma();
+                    break;
                 case 0:
                     System.out.println("Cerrando aplicacion...");
                 default:
@@ -139,6 +142,38 @@ public class Principal {
 
     private void listarPorIdioma(){
 
+        var opcion = -1;
+        while(opcion != 0){
+            var otroMenu = """
+                _____________________________________________
+                Escriba el numero del idioma que desea buscar:
+                
+                1 - ES = Español
+                2 - EN = Inglés
+                
+                0 - Volver al Menú principal
+                _____________________________________________
+                """;
+            System.out.println(otroMenu);
+            opcion = teclado.nextInt();
+            teclado.nextLine();
+            switch (opcion){
+                case 1:
+                    String abrev = "es";
+                    List<Idioma> espanol = repositorioDeIdiomas.findByAbreviacion(abrev);
+                    espanol.forEach(System.out::println);
+                    break;
+                case 2:
+                    String sigla = "en";
+                    List<Idioma> ingles = repositorioDeIdiomas.findByAbreviacion(sigla);
+                    ingles.forEach(System.out::println);
+                    break;
+                case 0:
+                    muestraElMenu();
+                default:
+                    System.out.println("Opcion invalida");
+            }
+        }
     }
 
 }
